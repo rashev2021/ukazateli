@@ -3,46 +3,45 @@
 
 using namespace std;
 
-void exercise1()
+void exercise1(int* array)
 {
 	//Задание 1
 	//Используя два указателя на массив целых чисел, скопировать один массив в другой.
 	//Использовать в программе арифметику указателей для продвижения по массиву, а также
 	//оператор разыменования.
 	
-	cout << endl << " Задание 1" << endl << endl;
+	cout << endl << " Задание 1" << endl;
 
-	int array1[7]{ 3,5,7,1,9,0,6 };
-	int array2[7]{};
-
-	int* parray1 = array1;
-	int* parray2 = array2;
+	int* array1 = new int[7]{};
 
 	cout << endl << " " << " array1 = ";
+
 	for (int i = 0; i < 7; i++) {
 
-		cout << "[" << *(parray1 + i) << "]" << " ";
+		cout << "[" << *(array + i) << "]" << " ";
 	}
-	cout << endl;
-	cout << endl << " " << " array2 = ";
-	for (int i = 0; i < 7; i++) {
-
-		cout << "[" << *(parray2 + i) << "]" << " ";
-	}
-	cout << endl;
-	cout << endl << " Копирование массива array1 в array2" << endl << endl;
-
-	parray2 = parray1;
 
 	cout << endl << " " << " array2 = ";
+
 	for (int i = 0; i < 7; i++) {
 
-		cout << "[" << * (parray2 + i) << "]" << " ";
+		cout << "[" << *(array1 + i) << "]" << " ";
+	}
+	
+	cout << endl << endl << " Копирование массива array1 в array2" << endl;
+
+	cout << endl << " " << " array2 = ";
+
+	for (int i = 0; i < 7; i++) {
+
+		*(array1 + i) = *(array + i);
+		cout << "[" << *(array1 + i) << "]" << " ";
+		
 	}
 	cout << endl;
 	
 }
-void exercise2()
+void exercise2(int* array)
 {
 
 	//Задание 2
@@ -51,24 +50,24 @@ void exercise2()
 
 	cout << endl << " Задание 2" << endl << endl;
 
-	int array[7]{ 3,5,7,1,9,0,6 };
-	int* parray = array;
+	int* array1 = new int[7]{};
 
 	for (int i = 0; i < 7; i++) {
 
-		cout << "[" << *(parray + i) << "]" << " ";
+		cout << " " << "[" << *(array + i) << "]" << " ";
 	}
 	cout << endl << endl;
-	cout << "Обратное отображение массива " << endl << endl;
+	cout << " Обратное отображение массива: " << endl << endl;
 
-	for (int i = 6; i >= 0; i--) {
+	for (int i = 0, j = 6; i < 7; i++, j--) {
 
-		cout << "[" << *(parray + i) << "]" << " ";
+		*(array1 + i) = *(array + j);
+		cout << " " << "[" << *(array1 + i) << "]" << " ";
 	}
 	cout << endl;
 
 }
-void exercise3()
+void exercise3(int* array)
 {
 
 	//Задание 3
@@ -79,50 +78,37 @@ void exercise3()
 
 	cout << endl << " Задание 3" << endl << endl;
 
-	int array1[7]{ 3,5,7,1,9,0,6 };
-	int array2[7]{};
-
-	int* parray1 = array1;
-	int* parray2 = array2;
+	int* array1 = new int[7]{};
 
 	cout << endl << " " << " array1 = ";
 	for (int i = 0; i < 7; i++) {
 
-		cout << "[" << *(parray1 + i) << "]" << " ";
+		cout << "[" << *(array + i) << "]" << " ";
 	}
 	cout << endl;
-	parray2 = parray1;
 
 	cout << endl << " " << " array2 = ";
-	for (int i = 6; i >= 0; i--) {
+	for (int i = 0, j = 6; i < 7; i++, j--) {
 
-		cout << "[" << *(parray2 + i) << "]" << " ";
+		*(array1 + i) = *(array + j);
+		cout << "[" << *(array1 + i) << "]" << " ";
 	}
 	cout << endl;
 }
-void exercise4()
+void exercise4(int* a, int* b)
 {
 	//Задание 4
 	//Используя указатели и оператор разыменования, определить наибольшее из двух чисел.
 
-	cout << endl << " Задание 4" << endl << endl; 
-
-	int a = 5;
-	int b = 8;
-	int max = 0;
-
-	int* pa = &a;
-	int* pb = &b;
-	int* pm = &max;
-
-
-	if (*pa > *pb) {
-		*pm = *pa;
-		cout << " число " << *pm << " больше " << *pb << endl;
+	if (*a > *b) {
+		cout << " число " << *a << " больше " << *b << endl;
+	}
+	else if (*a == *b)
+	{
+		cout << " Чиcла равны";
 	}
 	else {
-		*pm = *pb;
-		cout << " число " << *pm << " больше " << *pa << endl;
+		cout << " число " << *b << " больше " << *a << endl;
 	}
 
 }
@@ -152,7 +138,6 @@ void exercise6()
   //Используя указатели и оператор разыменования, обменять местами значения двух переменных
   
 	cout << endl << " Задание 6" << endl << endl; 
-
 
 	  int a = 8;
 	  int b = 5;
@@ -222,7 +207,7 @@ void exercise7()
 
 	} while (true);
 }
-void exercise8()
+void exercise8(int* array)
 {
 	//Задание 8
    //Используя указатель на массив целых чисел, посчитать сумму элементов массива. Использовать
@@ -231,19 +216,16 @@ void exercise8()
 
 	cout << endl << " Задание 8" << endl << endl;
 
-	   int array1[7]{ 3,5,7,1,9,0,6 };
 	   int sum = 0;
-	   int* psum = &sum;
-	   int* parray1 = array1;
-
-	   cout << endl << " " << " array1 = ";
+	 
+	   cout << " " << " array1 = ";
 	   for (int i = 0; i < 7; i++) {
 
-		   *psum += *(parray1 + i);
-		   cout << "[" << *(parray1 + i) << "]" << " ";
+		   sum += *(array + i);
+		   cout << "[" << *(array + i) << "]" << " ";
 
 	   }
-	   cout << endl << "  Сумма элементов равна: " <<  * psum << endl;
+	   cout << endl << "  Сумма элементов равна: " <<  sum << endl;
 
 }
 
@@ -254,7 +236,14 @@ int main()
 
 	//Тема: Указатели.
 
+	int array[7]{ 3,5,7,1,9,0,6 };
+	int* parray = array;
+
 	int exercise;
+	int a;
+	int* pa = &a;
+	int b;
+	int* pb = &b;
 
 	cout << " Ведите номер задания от 1 до 8: ";
 	cin >> exercise;
@@ -262,16 +251,21 @@ int main()
 	switch (exercise)
 	{
 	case 1:
-		exercise1();
+		exercise1(parray);
 		break;
 	case 2:
-		exercise2();
+		exercise2(parray);
 		break;
 	case 3:
-		exercise3();
+		exercise3(parray);
 		break;
 	case 4:
-		exercise4();
+		cout << endl << " Задание 4" << endl << endl;
+		cout << " Введите первое число: ";
+		cin >> *pa;
+		cout << " Введите второе число: ";
+		cin >> *pb;
+		exercise4(pa, pb);
 		break;
 	case 5:
 		exercise5();
@@ -283,7 +277,7 @@ int main()
 		exercise7();
 		break;
 	case 8:
-		exercise8();
+		exercise8(parray);
 		break;
 	default:
 		cout << " Неверное значение. Попробуйте снова";
